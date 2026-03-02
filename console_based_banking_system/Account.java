@@ -1,3 +1,5 @@
+import java.util.regex.Pattern;
+
 public abstract class Account {
     private String personName;
     private String accountType;
@@ -17,7 +19,7 @@ public abstract class Account {
         this.accountType = accountType;
         this.accountNo = accountNo;
         this.personAddress = personAddress;
-        if(!personPhoneNo.matches("\\d{10}") {
+        if(!personPhoneNo.matches("\\d{10}")) {
             throw new IllegalArgumentException("Phone number must be 10 digits.");
         }
         this.personPhoneNo = personPhoneNo;
@@ -50,34 +52,51 @@ public abstract class Account {
 
 
     // Setters
-    public void setPersonName(String personName) {
+    public void setPersonName(String personName) throws IllegalArgumentException {
+        if(personName == null || personName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Person name cannot be null or empty.");
+        }
         this.personName = personName;
     }
 
-    public void setAccountType(String accountType) {
+    public void setAccountType(String accountType) throws IllegalArgumentException {
+        if(accountType == null || accountType.trim().isEmpty()) {
+            throw new IllegalArgumentException("Account type cannot be null or empty.");
+        }
         this.accountType = accountType;
     }
 
-    public void setAccountNo(String accountNo) {
+    public void setAccountNo(String accountNo) throws IllegalArgumentException {
+        if(accountNo == null || accountNo.trim().isEmpty()) {
+            throw new IllegalArgumentException("Account number cannot be null or empty.");
+        }
         this.accountNo = accountNo;
     }
 
-    public void setPersonAddress(String personAddress) {
+    public void setPersonAddress(String personAddress) throws IllegalArgumentException {
+        if(personAddress == null || personAddress.trim().isEmpty()) {
+            throw new IllegalArgumentException("Person address cannot be null or empty.");
+        }
         this.personAddress = personAddress;
     }
 
-    public void setPersonPhoneNo(String personPhoneNo) {
+    public void setPersonPhoneNo(String personPhoneNo) throws IllegalArgumentException {
+        if(!personPhoneNo.matches("\\d{10}")  || personPhoneNo == null) {
+            throw new IllegalArgumentException("Phone number must be 10 digits.");
+        }
         this.personPhoneNo = personPhoneNo;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(double balance) throws IllegalArgumentException {
+        if(balance < 0) {
+            throw new IllegalArgumentException("Balance cannot be negative.");
+        }
         this.balance = balance;
     }
 
     public void deposit(double amount) {
         if (amount > 0) {
             balance += amount;
-            System.out.println("Deposited: " + amount + ". New balance: " + balance);
         } else {
             System.out.println("Invalid deposit amount.");
         }

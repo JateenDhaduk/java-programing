@@ -11,7 +11,6 @@ public class CurrentAccount extends Account {
             return true;    
         } else {
             throw new IllegalArgumentException("Invalid withdrawal amount or overdraft limit exceeded.");
-            return false;
         }
     }
 }    

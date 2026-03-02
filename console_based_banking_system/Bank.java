@@ -85,6 +85,7 @@ public class Bank {
         Account acc = findAccountByNumber(AccountNo);
 
         if(acc != null){
+            
             try {
                 acc.withdraw(amount);
                 System.out.println("Successfully withdrawn " + amount + " New balance: " + acc.getBalance());
@@ -96,4 +97,23 @@ public class Bank {
             System.out.println("Account not found.");
         }
     } 
+
+    public void transferFunds(String fromAccountNo , String toAccountNo , Double amount) throws IllegalArgumentException{
+        checkAccoutNoValidation(fromAccountNo);
+        checkAccoutNoValidation(toAccountNo);
+
+        Account fromAcc = findAccountByNumber(fromAccountNo);
+        Account toAcc = findAccountByNumber(toAccountNo); 
+
+        if(fromAcc != null){
+            boolean result = fromAcc.withdraw(amount);
+            if(result){
+                toAcc.deposit(amount); 
+                System.out.println("Successfully transferred " + amount + " from account " + fromAccountNo + " to account " + toAccountNo); 
+            }
+            else{
+                System.out.println("Transfer failed.");
+            }
+        }
+    }
 }

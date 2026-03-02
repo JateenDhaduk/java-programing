@@ -9,12 +9,14 @@ public class Saving extends Account {
         return interestRate;
     }
     @Override
-    public void withdraw(double amount) {
+    public boolean withdraw(double amount) {
         if (amount > 0 && amount <= getBalance()) {
             setBalance(getBalance() - amount);
             System.out.println("Withdrawn: " + amount + ". New balance: " + getBalance());
+            return true;
         } else {
-            System.out.println("Invalid withdrawal amount or insufficient balance.");   
+            System.out.println("Invalid withdrawal amount or insufficient balance.");
+            return false;  
         }
         }
 }

@@ -5,11 +5,13 @@ public class CurrentAccount extends Account {
     }
 
     @Override
-    public void withdraw(double amount) throws IllegalArgumentException {
+    public boolean withdraw(double amount) throws IllegalArgumentException {
         if (amount > 0 && overdraftLimit <= (getBalance() - amount)) {
-            setBalance(getBalance() - amount);       
+            setBalance(getBalance() - amount); 
+            return true;    
         } else {
             throw new IllegalArgumentException("Invalid withdrawal amount or overdraft limit exceeded.");
+            return false;
         }
     }
 }    

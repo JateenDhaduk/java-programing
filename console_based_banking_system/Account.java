@@ -8,11 +8,18 @@ public abstract class Account {
 
     // Constructor
     public Account(String personName, String accountType, String accountNo, 
-                   String personAddress, String personPhoneNo) {
+                   String personAddress, String personPhoneNo) throws IllegalArgumentException {
+        if(personName == null || accountType == null || accountNo == null || 
+           personAddress == null || personPhoneNo == null) {
+            throw new IllegalArgumentException("All fields must be provided.");
+        }
         this.personName = personName;
         this.accountType = accountType;
         this.accountNo = accountNo;
         this.personAddress = personAddress;
+        if(!personPhoneNo.matches("\\d{10}") {
+            throw new IllegalArgumentException("Phone number must be 10 digits.");
+        }
         this.personPhoneNo = personPhoneNo;
     }
 

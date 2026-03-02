@@ -1,6 +1,7 @@
 public class Bank {
     private String bankName;
     private String bankAddress;
+    private List<Account> accounts;
     public Bank(String bankName, String bankAddress) {
         this.bankName = bankName;
         this.bankAddress = bankAddress;
@@ -15,7 +16,16 @@ public class Bank {
     public String getBankAddress() {
         return bankAddress;
     }
+    public void addAccount(Acount account) {
+        for(Account acc : accounts){
+            if(acc.getAccountNo().equals(account.getAccountNo())){
+                System.out.println("Account with this number already exists.");
+                return;
+            }
+        }
 
+        accounts.add(account);
+    }
     
 
     // Setters

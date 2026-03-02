@@ -9,14 +9,18 @@ public class Saving extends Account {
         return interestRate;
     }
     @Override
-    public boolean withdraw(double amount) {
+    public boolean withdraw(double amount) throws IllegalArgumentException {
         if (amount > 0 && amount <= getBalance()) {
             setBalance(getBalance() - amount);
             System.out.println("Withdrawn: " + amount + ". New balance: " + getBalance());
             return true;
         } else {
-            System.out.println("Invalid withdrawal amount or insufficient balance.");
-            return false;  
+            throw new IllegalArgumentException("Invalid withdrawal amount or insufficient balance.");
         }
         }
+    public void applyInterest() {
+        double interest = getBalance() * (interestRate / 100);
+        setBalance(getBalance() + interest);
+        System.out.println("Interest applied: " + interest + ". New balance: " + getBalance()); 
+    }
 }

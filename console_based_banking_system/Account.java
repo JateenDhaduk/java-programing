@@ -107,7 +107,7 @@ public abstract class Account {
             throw new IllegalArgumentException("Invalid deposit amount.");
         }
     }
-    public abstract void withdraw(double amount);// Abstract method to be implemented by subclasses
+    public abstract boolean withdraw(double amount);// Abstract method to be implemented by subclasses
 
 
     // toString method for displaying account information

@@ -1,4 +1,3 @@
-import java.util.regex.Pattern;
 
 public abstract class Account {
     private String personName;
@@ -9,10 +8,19 @@ public abstract class Account {
     private double balance;
 
     // Constructor
+    /**
+     * @param personName
+     * @param accountType
+     * @param accountNo
+     * @param personAddress
+     * @param personPhoneNo
+     * @throws IllegalArgumentException
+     */
     public Account(String personName, String accountType, String accountNo, 
                    String personAddress, String personPhoneNo) throws IllegalArgumentException {
         if(personName == null || accountType == null || accountNo == null || 
-           personAddress == null || personPhoneNo == null) {
+           personAddress == null || personPhoneNo == null || personName.trim().isEmpty() || accountType.trim().isEmpty() ||
+           accountNo.trim().isEmpty() || personAddress.trim().isEmpty() || personPhoneNo.trim().isEmpty()) {
             throw new IllegalArgumentException("All fields must be provided.");
         }
         this.personName = personName;
@@ -81,27 +89,23 @@ public abstract class Account {
     }
 
     public void setPersonPhoneNo(String personPhoneNo) throws IllegalArgumentException {
-        if(!personPhoneNo.matches("\\d{10}")  || personPhoneNo == null) {
+        if(personPhoneNo == null || !personPhoneNo.matches("\\d{10}") ) {
             throw new IllegalArgumentException("Phone number must be 10 digits.");
         }
         this.personPhoneNo = personPhoneNo;
     }
-
-    public void setBalance(double balance) throws IllegalArgumentException {
-        if(balance < 0) {
-            throw new IllegalArgumentException("Balance cannot be negative.");
-        }
-        this.balance = balance;
-    }
-
-    public void deposit(double amount) {
+    
+    protected void deposit(double amount) throws IllegalArgumentException {
         if (amount > 0) {
-            balance += amount;
+            this.balance += amount;
         } else {
-            System.out.println("Invalid deposit amount.");
+            throw new IllegalArgumentException("Invalid deposit amount.");
         }
     }
-    public abstract void withdraw(double amount);
+    public abstract void withdraw(double amount);// Abstract method to be implemented by subclasses
+
+
+    // toString method for displaying account information
     @Override
     public String toString() {
         return "Account{" +

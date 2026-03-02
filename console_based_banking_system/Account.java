@@ -82,6 +82,16 @@ public abstract class Account {
             System.out.println("Invalid deposit amount.");
         }
     }
-
     public abstract void withdraw(double amount);
+    @Override
+    public String toString() {
+        return "Account{" +
+                "personName='" + personName + '\'' +
+                ", accountType='" + accountType + '\'' +
+                ", accountNo='" + accountNo + '\'' +
+                ", personAddress='" + personAddress + '\'' +
+                ", personPhoneNo='" + personPhoneNo + '\'' +
+                ", balance=" + balance +
+                '}';
+    }
 }   

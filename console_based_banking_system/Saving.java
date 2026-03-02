@@ -4,16 +4,17 @@ public class Saving extends Account {
                   String personAddress, String personPhoneNo, double interestRate) {
         super(personName, accountType, accountNo, personAddress, personPhoneNo);
         this.interestRate = interestRate;
-
+    }
     public double getInterestRate() {
         return interestRate;
     }
-    @override
+    @Override
     public void withdraw(double amount) {
         if (amount > 0 && amount <= getBalance()) {
             setBalance(getBalance() - amount);
             System.out.println("Withdrawn: " + amount + ". New balance: " + getBalance());
         } else {
             System.out.println("Invalid withdrawal amount or insufficient balance.");   
+        }
         }
 }

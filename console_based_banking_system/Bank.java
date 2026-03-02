@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 public class Bank {
     private String bankName;
     private String bankAddress;
@@ -16,7 +18,7 @@ public class Bank {
     public String getBankAddress() {
         return bankAddress;
     }
-    public void addAccount(Acount account) {
+    public void addAccount(Account account) {
         for(Account acc : accounts){
             if(acc.getAccountNo().equals(account.getAccountNo())){
                 System.out.println("Account with this number already exists.");
@@ -26,8 +28,19 @@ public class Bank {
 
         accounts.add(account);
     }
-    
-
+    public void displayAccounts(){
+        for(Account acc : accounts){
+            System.out.println(acc.toString());
+        }
+    }
+    public Account findAccountByNumber(String accountNo) {
+        for (Account acc : accounts) {
+            if (acc.getAccountNo().equals(accountNo)) {
+                return acc;
+            }
+        }
+        return null;
+    }
     // Setters
     public void setBankName(String bankName) {
         this.bankName = bankName;

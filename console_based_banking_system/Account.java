@@ -94,7 +94,12 @@ public abstract class Account {
         }
         this.personPhoneNo = personPhoneNo;
     }
-    
+    protected void setBalance(double balance) throws IllegalArgumentException {
+        if(balance < 0) {
+            throw new IllegalArgumentException("Balance cannot be negative.");
+        }
+        this.balance = balance;
+    }
     protected void deposit(double amount) throws IllegalArgumentException {
         if (amount > 0) {
             this.balance += amount;
